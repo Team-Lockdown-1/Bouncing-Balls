@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,6 +10,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.HashMap;
 
 //scene muss in 800x600 erstellt werden.
 public class Setting extends Application {
@@ -249,6 +253,25 @@ public class Setting extends Application {
         firstHBox.setSpacing(10);
         secondHBox.setSpacing(10);
         thirdHBox.setSpacing(10);
+
+        //------------------------------------------------------------------------------------------
+        //---------------------------Funktionen-----------------------------------------------------
+        //------------------------------------------------------------------------------------------
+        HashMap<String, String> list = new HashMap<>();
+
+        speichern.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                list.put("bälle", ""+bälle.getSelectedToggle());
+                list.put("geschwindigkeit", ""+geschwind.getSelectedToggle());
+                list.put("infizierte", ""+infi.getSelectedToggle());
+                list.put("heilung", ""+genesung.getSelectedToggle());
+                System.out.println(list);
+                Stage stage = (Stage) speichern.getScene().getWindow();
+                stage.close();
+            }
+        });
+
 
 
         //return
